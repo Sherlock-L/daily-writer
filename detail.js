@@ -3,6 +3,8 @@ import { apiBaseUrl } from './config.js';
 
 // DOM加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
+ 
+
     // 获取URL参数中的日记ID
     const urlParams = new URLSearchParams(window.location.search);
     const diaryId = urlParams.get('id');

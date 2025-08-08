@@ -6,8 +6,15 @@ from config import DATABASE_URL
 from sqlalchemy import create_engine
 
 # 创建数据库引擎
-engine = create_engine(DATABASE_URL, echo=True)
-
+# engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(
+    DATABASE_URL,
+    echo=True,
+    pool_size=10,
+    max_overflow=20,
+    pool_timeout=30,
+    pool_recycle=3600  # 1小时，小于MySQL默认的8小时超时
+)
 # 创建会话
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

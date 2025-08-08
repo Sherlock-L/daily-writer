@@ -7,6 +7,7 @@ const pageSize = 10;
 
 // DOM加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
+
     // 返回主页按钮事件
     document.getElementById('back-to-home').addEventListener('click', function() {
         window.location.href = 'index.html';
@@ -69,10 +70,12 @@ async function loadDiaryList() {
                 const diaryItem = document.createElement('div');
                 diaryItem.className = 'diary-item';
                 diaryItem.innerHTML = `
-                    <h3>${diary.title}</h3>
-                    <p class="diary-date">${new Date(diary.create_time).toLocaleDateString()}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <h3 style="font-size: 23px;font-weight: 500;margin: 0;">${diary.title}</h3>
+                        <button class="view-btn" data-id="${diary.id}">查看详情</button>
+                    </div>
+                    <p class="diary-date">记录时间：${new Date(diary.create_time).toLocaleDateString()}</p>
                     <p class="diary-excerpt">${diary.content.substring(0, 100)}${diary.content.length > 100 ? '...' : ''}</p>
-                    <button class="view-btn" data-id="${diary.id}">查看详情</button>
                 `;
                 diaryListElement.appendChild(diaryItem);
             });

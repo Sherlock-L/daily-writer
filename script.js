@@ -1,8 +1,8 @@
 // 导入配置
 import { apiBaseUrl } from './config.js';
-
 // 设置当前日期为标题默认值
 document.addEventListener('DOMContentLoaded', function() {
+
     // 设置当前日期
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
