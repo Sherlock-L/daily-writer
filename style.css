@@ -58,24 +58,121 @@ button:hover {
     gap: 15px;
 }
 
+/* 修改日记标题输入框样式 */
 #diary-title {
-    padding: 10px;
+    padding: 15px 20px;
     font-size: 18px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #d3c7a7;
+    border-radius: 4px 4px 0 0;
+    background-color: #f7f3e9;
+    box-shadow: 
+        inset 0 1px 3px rgba(0,0,0,0.05),
+        0 1px 0 rgba(255,255,255,0.8);
+    transition: all 0.4s ease;
+    transform-origin: left bottom;
+    transform: perspective(1000px) rotateY(0deg);
+    position: relative;
 }
 
+/* 修改日记内容文本框样式 */
 #diary-content {
-    padding: 15px;
-    font-size: 20px;    /* 从16px调大4px */
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 20px;
+    font-size: 20px;
+    border: 1px solid #d3c7a7;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
     min-height: 300px;
     resize: vertical;
     font-family: 'Long Cang', cursive;
     line-height: 1.8;
-    background-color: #f9f9f9;
-    font-weight: bold;  /* 加粗字体 */
+    background-color: #f7f3e9;
+    font-weight: bold;
+    box-shadow: 
+        inset 0 1px 3px rgba(0,0,0,0.05),
+        0 1px 0 rgba(255,255,255,0.8);
+    transition: all 0.4s ease;
+    transform-origin: left bottom;
+    transform: perspective(1000px) rotateY(0deg);
+    position: relative;
+}
+
+/* 添加纸张纹理效果 */
+#diary-title::before, #diary-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(90deg, rgba(200,180,150,0.03) 50%, transparent 50%),
+                      linear-gradient(rgba(200,180,150,0.03) 50%, transparent 50%);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+/* 添加书本装订线效果 */
+#diary-title::after, #diary-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 100%;
+    background: linear-gradient(90deg, #e8e0cc, #f7f3e9);
+    box-shadow: inset -2px 0 3px rgba(0,0,0,0.05);
+    z-index: 1;
+}
+
+/* 调整输入框内边距，避免文字被装订线遮挡 */
+#diary-title {
+    padding-left: 30px;
+}
+
+#diary-content {
+    padding-left: 30px;
+}
+
+/* 添加鼠标悬停效果 - 书本翻页 */
+#diary-title:hover,
+#diary-content:hover {
+    transform: perspective(1000px) rotateY(1deg);
+    box-shadow: 
+        inset 0 1px 3px rgba(0,0,0,0.05),
+        2px 1px 5px rgba(0,0,0,0.1);
+    background-color: #f5efe3;
+}
+
+/* 优化整体容器样式，模拟书本 */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #f0ead6;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 
+        0 5px 15px rgba(0,0,0,0.1),
+        0 0 0 1px rgba(0,0,0,0.05),
+        inset 0 0 0 1px rgba(255,255,255,0.5);
+    position: relative;
+}
+
+/* 添加书本封面效果 */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, #d4c4a5, #e8e0cc);
+    border-radius: 8px 0 0 8px;
+    box-shadow: inset -2px 0 5px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+/* 调整容器内边距，为书本侧边留出空间 */
+.container header, .container main {
+    margin-left: 20px;
 }
 
 #save-btn {
