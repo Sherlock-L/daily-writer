@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日记列表</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>日记列表</h1>
+            <button id="back-to-home">返回主页</button>
+        </header>
+        <main>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="搜索标题...">
+                <button id="search-btn">搜索</button>
+            </div>
+            <div id="loading" class="loading">加载中...</div>
+            <div id="diary-list" class="diary-list"></div>
+            <div id="pagination" class="pagination"></div>
+        </main>
+    </div>
+    <script type="module" src="list.js"></script>
+</body>
+</html>

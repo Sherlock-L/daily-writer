@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日记详情</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button id="back-to-list">返回列表</button>
+            <h1 id="diary-title"></h1>
+            <button id="delete-btn">删除日记</button>
+        </header>
+        <main>
+            <div id="loading" class="loading">加载中...</div>
+            <div id="error" class="error-message"></div>
+            <div class="diary-detail">
+                <p class="diary-date" id="diary-date"></p>
+                <div id="diary-content" class="diary-content"></div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="detail.js"></script>
+</body>
+</html>
