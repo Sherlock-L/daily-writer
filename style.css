@@ -37,6 +37,8 @@ header h1 {
 }
 
 button {
+    font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
+    font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     padding: 8px 16px;
     background-color: #3498db;
     color: white;
@@ -61,7 +63,9 @@ button:hover {
 /* 修改日记标题输入框样式 */
 #diary-title {
     padding: 15px 20px;
-    font-size: 18px;
+    font-size: 28px;
+    font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
+    font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     border: 1px solid #d3c7a7;
     border-radius: 4px 4px 0 0;
     background-color: #f7f3e9;
@@ -172,12 +176,15 @@ button:hover {
 
 /* 调整容器内边距，为书本侧边留出空间 */
 .container header, .container main {
+    font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
     margin-left: 20px;
 }
 
 #save-btn {
     align-self: flex-start;
     padding: 10px 20px;
+    font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
+    font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     background-color: #2ecc71;
 }
 
@@ -193,6 +200,8 @@ button:hover {
 }
 
 #search-input {
+    font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
+    font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
@@ -243,6 +252,8 @@ button:hover {
 }
 
 .view-btn {
+    font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
+    font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     background-color: #3498db;
 }
 
@@ -272,6 +283,8 @@ button:hover {
 }
 
 .pagination button {
+    font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
+    font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     padding: 6px 12px;
     background-color: #eee;
     color: #333;
@@ -308,6 +321,8 @@ button:hover {
 
 /* 删除按钮样式 */
 #delete-btn {
+    font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
+    font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     background-color: #e74c3c;
 }
 
