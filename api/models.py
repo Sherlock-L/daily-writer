@@ -5,6 +5,9 @@ from sqlalchemy.orm import sessionmaker
 from config import DATABASE_URL
 from sqlalchemy import create_engine
 
+from fastapi import HTTPException
+import time
+from sqlalchemy.exc import SQLAlchemyError
 # 创建数据库引擎
 # engine = create_engine(DATABASE_URL, echo=True)
 engine = create_engine(
@@ -45,9 +48,33 @@ def create_tables():
     Base.metadata.create_all(bind=engine)
 
 # 依赖项：获取数据库会话
-def get_db():
+def get_db():        
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
+# 带重试机制的数据库会话获取函数
+def get_db_with_retry(max_retries: int = 3, delay: int = 1):
+    """
+    获取数据库会话，带重试机制
+    
+    参数:
+    max_retries: 最大重试次数
+    delay: 重试间隔(秒)
+    """
+    retries = 0
+    while retries < max_retries:
+        try:
+            db = SessionLocal()
+            try:
+                yield db
+                return  # 成功获取并使用会话后，直接返回
+            finally:
+                db.close()
+        except SQLAlchemyError as e:
+            retries += 1
+            if retries >= max_retries:
+                raise HTTPException(status_code=500, detail=f'数据库连接失败: {str(e)}')
+            time.sleep(delay)
