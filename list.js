@@ -71,7 +71,7 @@ async function loadDiaryList() {
                 diaryItem.className = 'diary-item';
                 diaryItem.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                        <h3 style="font-size: 23px;font-weight: 500;margin: 0;">${diary.title}</h3>
+                        <h3 style="font-size: 24px;font-weight: bold;margin: 0;">${diary.title}</h3>
                         <button class="view-btn" data-id="${diary.id}">查看详情</button>
                     </div>
                     <p class="diary-date">记录时间：${new Date(diary.create_time).toLocaleDateString()}</p>

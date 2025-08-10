@@ -40,7 +40,7 @@ button {
     font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
     font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     padding: 8px 16px;
-    background-color: #3498db;
+    background-color: #8B4513; /* 复古棕色替代亮蓝色 */
     color: white;
     border: none;
     border-radius: 4px;
@@ -50,7 +50,7 @@ button {
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #6D380C; /* 加深的棕色作为悬停效果 */
 }
 
 /* 编辑器样式 */
@@ -185,11 +185,11 @@ button:hover {
     padding: 10px 20px;
     font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
     font-weight: bold;  /* 添加与textarea相同的字体粗细 */
-    background-color: #2ecc71;
+    background-color: #6B8E23; /* 复古绿色替代亮绿色 */
 }
 
 #save-btn:hover {
-    background-color: #27ae60;
+    background-color: #556B2F; /* 加深的绿色作为悬停效果 */
 }
 
 /* 列表样式 */
@@ -254,7 +254,7 @@ button:hover {
 .view-btn {
     font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
     font-weight: bold;  /* 添加与textarea相同的字体粗细 */
-    background-color: #3498db;
+    background-color: #8B4513; /* 与普通按钮统一为复古棕色 */
 }
 
 /* 详情页样式 */
@@ -286,17 +286,17 @@ button:hover {
     font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
     font-weight: bold;  /* 添加与textarea相同的字体粗细 */
     padding: 6px 12px;
-    background-color: #eee;
+    background-color: #D2B48C; /* 复古米色替代浅灰色 */
     color: #333;
 }
 
 .pagination button.active {
-    background-color: #3498db;
+    background-color: #8B4513; /* 与普通按钮统一为复古棕色 */
     color: white;
 }
 
 .pagination button:hover:not(.active) {
-    background-color: #ddd;
+    background-color: #BC8F8F; /* 加深的米色作为悬停效果 */
 }
 
 /* 加载和错误样式 */
@@ -323,11 +323,11 @@ button:hover {
 #delete-btn {
     font-family: 'Long Cang', cursive;  /* 添加与textarea相同的字体 */
     font-weight: bold;  /* 添加与textarea相同的字体粗细 */
-    background-color: #e74c3c;
+    background-color: #8B0000; /* 复古深红色替代亮红色 */
 }
 
 #delete-btn:hover {
-    background-color: #c0392b;
+    background-color: #6B0000; /* 加深的深红色作为悬停效果 */
 }
 
 /* 响应式设计 */
