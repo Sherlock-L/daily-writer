@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from models import Diary, get_db_with_retry  # 修改这里，使用带重试的函数
+from models import Diary, get_db_new_connection  # 修改这里，使用带重试的函数
 from pydantic import BaseModel
 from typing import List, Optional
 from config import PER_PAGE
@@ -19,7 +19,7 @@ class DiaryUpdate(BaseModel):
 
 # 保存日记
 @router.post('/diary', response_model=dict)
-def save_diary(diary: DiaryCreate, db: Session = Depends(get_db_with_retry)):  # 修改这里
+def save_diary(diary: DiaryCreate, db: Session = Depends(get_db_new_connection)):  # 修改这里
     try:
         new_diary = Diary(title=diary.title, content=diary.content)
         db.add(new_diary)
@@ -40,7 +40,7 @@ def get_diaries(
     page: int = Query(1, ge=1),
     per_page: int = Query(PER_PAGE, ge=1, le=100),
     search: str = Query('', min_length=0),
-    db: Session = Depends(get_db_with_retry)  # 修改这里
+    db: Session = Depends(get_db_new_connection)  # 修改这里
 ):
     try:
         # 计算偏移量
@@ -78,7 +78,7 @@ def get_diaries(
 
 # 获取日记详情
 @router.get('/diary/{diary_id}', response_model=dict)
-def get_diary(diary_id: int, db: Session = Depends(get_db_with_retry)):  # 修改这里
+def get_diary(diary_id: int, db: Session = Depends(get_db_new_connection)):  # 修改这里
     try:
         diary = db.query(Diary).filter(Diary.id == diary_id, Diary.is_deleted == 0).first()
         if not diary:
@@ -95,7 +95,7 @@ def get_diary(diary_id: int, db: Session = Depends(get_db_with_retry)):  # 修�
 
 # 更新日记
 @router.put('/diary/{diary_id}', response_model=dict)
-def update_diary(diary_id: int, diary: DiaryUpdate, db: Session = Depends(get_db_with_retry)):  # 修改这里
+def update_diary(diary_id: int, diary: DiaryUpdate, db: Session = Depends(get_db_new_connection)):  # 修改这里
     try:
         existing_diary = db.query(Diary).filter(Diary.id == diary_id, Diary.is_deleted == 0).first()
         if not existing_diary:
@@ -123,7 +123,7 @@ def update_diary(diary_id: int, diary: DiaryUpdate, db: Session = Depends(get_db
 
 # 删除日记
 @router.delete('/diary/{diary_id}', response_model=dict)
-def delete_diary(diary_id: int, db: Session = Depends(get_db_with_retry)):  # 修改这里
+def delete_diary(diary_id: int, db: Session = Depends(get_db_new_connection)):  # 修改这里
     try:
         diary = db.query(Diary).filter(Diary.id == diary_id, Diary.is_deleted == 0).first()
         if not diary:

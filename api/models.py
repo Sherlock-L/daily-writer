@@ -55,6 +55,24 @@ def get_db():
     finally:
         db.close()
 
+# 新增：每次请求创建新连接的函数
+def get_db_new_connection():        
+    # 每次请求都创建新的引擎和会话
+    new_engine = create_engine(
+        DATABASE_URL,
+        echo=True,
+        pool_size=0,  # 不使用连接池
+        max_overflow=0
+    )
+    NewSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=new_engine)
+    db = NewSessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+        new_engine.dispose()  # 释放引擎资源
+
+
 # 带重试机制的数据库会话获取函数
 def get_db_with_retry(max_retries: int = 3, delay: int = 1):
     """
