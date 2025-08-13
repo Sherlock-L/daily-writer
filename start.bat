@@ -1,32 +1,40 @@
 @echo off
-title Daily Writer dev env start
+title daily-writer - dev env start
 color 0A
 
-echo starting Daily Writer ...
+:: 获取当前脚本所在目录（daily-writer根目录）
+set "SCRIPT_DIR=%~dp0"
+echo Script directory: %SCRIPT_DIR%
+echo.
+
+echo Starting daily-writer development environment...
 echo ====================================
 
-echo [1/4] go to : D:\daily-writer
-cd /d D:\daily-writer
+echo [1/4] go to: frontend
+cd /d "%SCRIPT_DIR%front" || (echo Error: Failed to change directory to frontend & exit /b 1)
 echo current path: %cd%
 echo.
 
 echo [2/4] activate conda env: daily
-call conda activate daily
+@REM call conda activate daily || (echo Error: Failed to activate conda env "daily" & exit /b 1)
+call conda activate daily 
 echo current conda env: %CONDA_DEFAULT_ENV%
 echo.
 
 echo [3/4] start HTTP server (port 10086)
-start "HTTP Server" cmd /k python -m http.server 10086
+start /B "daily-writer - HTTP Server" cmd /c python -m http.server 10086 || (echo Error: Failed to start HTTP server & exit /b 1)
 echo HTTP server started
 echo url: http://localhost:10086
 echo.
 
 echo [4/4] start API server
-cd /d D:\daily-writer\api
+cd /d "%SCRIPT_DIR%api" || (echo Error: Failed to change directory to API & exit /b 1)
 echo go to API dir: %cd%
-python main.py
+start /B "daily-writer - API Server" cmd /c python main.py || (echo Error: Failed to start API server & exit /b 1)
 echo.
 
 echo ====================================
-echo all started !  http://localhost:10086
-pause
+echo All services started!  http://localhost:10086
+
+rem 隐藏窗口并保持运行
+if not "%1"=="hidden" (start /B cmd /c %0 hidden & exit)
