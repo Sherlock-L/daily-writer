@@ -21,18 +21,4 @@
 - 表名：diary
 
 
-
 4. 配置数据库  config.py
-```
-DB_USER = 'mysql用户'
-DB_PASSWORD = 'mysql密码'
-DB_NAME = 'diary_db'
-```
-5. 运行项目
-- win11: start.bat
-- linux:  
- 1. 前端：cd   front && python -m http.server 10086  
- 2. 后端：cd   api && python main.py  
-
-
-
