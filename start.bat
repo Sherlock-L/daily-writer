@@ -21,10 +21,10 @@ call conda activate daily
 echo current conda env: %CONDA_DEFAULT_ENV%
 echo.
 
-echo [3/4] start HTTP server (port 10086)
-start /B "daily-writer - HTTP Server" cmd /c python -m http.server 10086 || (echo Error: Failed to start HTTP server & exit /b 1)
+echo [3/4] start HTTP server (port 50000)
+start /B "daily-writer - HTTP Server" cmd /c python -m http.server 50000 || (echo Error: Failed to start HTTP server & exit /b 1)
 echo HTTP server started
-echo url: http://localhost:10086
+echo url: http://localhost:50000
 echo.
 
 echo [4/4] start API server
@@ -34,7 +34,7 @@ start /B "daily-writer - API Server" cmd /c python main.py || (echo Error: Faile
 echo.
 
 echo ====================================
-echo All services started!  http://localhost:10086
+echo All services started!  http://localhost:50000
 
 rem 隐藏窗口并保持运行
 if not "%1"=="hidden" (start /B cmd /c %0 hidden & exit)
