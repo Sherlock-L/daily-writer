@@ -1,6 +1,9 @@
 // 导入配置
 import { apiBaseUrl } from './config.js';
 
+// 导入心情和天气选项
+import { moodOptions, weatherOptions } from './moodWeather.js';
+
 // DOM加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
  
@@ -35,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadDiaryDetail(id) {
     const diaryTitleElement = document.getElementById('diary-title');
     const diaryDateElement = document.getElementById('diary-date');
+    const diaryMoodWeatherElement = document.getElementById('diary-mood-weather');
     const diaryContentElement = document.getElementById('diary-content');
     const loadingElement = document.getElementById('loading');
     const errorElement = document.getElementById('error');
@@ -53,9 +57,14 @@ async function loadDiaryDetail(id) {
         const res = await response.json();
         const diary=res.data
 
+        // 获取心情和天气对应的图标
+        const moodIcon = moodOptions.find(m => m.name === diary.mood)?.icon || '😐';
+        const weatherIcon = weatherOptions.find(w => w.name === diary.weather)?.icon || '🌤️';
+
         // 显示日记详情
         diaryTitleElement.textContent = diary.title;
         diaryDateElement.textContent = new Date(diary.create_time).toLocaleDateString();
+        diaryMoodWeatherElement.innerHTML = `${moodIcon} ${diary.mood} <span style="margin: 0 15px;"></span>${weatherIcon} ${diary.weather}`;
         diaryContentElement.textContent = diary.content;
     } catch (error) {
         console.error('加载日记详情出错:', error);

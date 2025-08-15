@@ -235,9 +235,16 @@ button:hover {
 
 .diary-date {
     color: #7f8c8d;
-    font-size: 18px;    /* 从14px调大4px */
+    font-size: 18px;
     margin-bottom: 10px;
-    font-weight: bold;  /* 加粗字体 */
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.diary-date span {
+    margin: 0 5px;
 }
 
 .diary-excerpt {
@@ -437,4 +444,11 @@ button:hover {
 /* 文本样式 */
 .option-text {
     line-height: 1.2;
+}
+
+/* 添加到现有样式中 */
+.diary-mood-weather {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #555;
 }

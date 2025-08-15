@@ -148,6 +148,7 @@ function getSelectedWeather(containerId) {
 
 // 导出函数
 export {
+    moodOptions, weatherOptions ,
     initMoodSelector,
     initWeatherSelector,
     getSelectedMood,

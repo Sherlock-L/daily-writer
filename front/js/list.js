@@ -1,6 +1,9 @@
 // 导入配置
 import { apiBaseUrl } from './config.js';
 
+// 导入心情和天气选项
+import { moodOptions, weatherOptions } from './moodWeather.js';
+
 // 当前页码和每页条数
 let currentPage = 1;
 const pageSize = 10;
@@ -69,12 +72,17 @@ async function loadDiaryList() {
             diaries.forEach(diary => {
                 const diaryItem = document.createElement('div');
                 diaryItem.className = 'diary-item';
+                
+                // 获取心情和天气对应的图标
+                const moodIcon = moodOptions.find(m => m.name === diary.mood)?.icon || '😐';
+                const weatherIcon = weatherOptions.find(w => w.name === diary.weather)?.icon || '🌤️';
+                
                 diaryItem.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
                         <h3 style="font-size: 24px;font-weight: bold;margin: 0;">${diary.title}</h3>
                         <button class="view-btn" data-id="${diary.id}">查看详情</button>
                     </div>
-                    <p class="diary-date">记录时间：${new Date(diary.create_time).toLocaleDateString()}</p>
+                    <p class="diary-date">记录时间：${new Date(diary.create_time).toLocaleDateString()} <span style="margin: 0 15px;"></span>${moodIcon} ${diary.mood} <span style="margin: 0 15px;"></span>${weatherIcon} ${diary.weather}</p>
                     <p class="diary-excerpt">${diary.content.substring(0, 100)}${diary.content.length > 100 ? '...' : ''}</p>
                 `;
                 diaryListElement.appendChild(diaryItem);
