@@ -6,7 +6,7 @@ backend/.DS_Store
 .DS_Store
 *~
 api/__pycache__/
-route/__pycache__/
+api/routes/__pycache__/
 __pycache__
 absolute/
 api/routes/__pycache__/
