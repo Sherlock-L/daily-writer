@@ -2,7 +2,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, Text, DateTime, SmallInteger
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from config import DATABASE_URL
+from config import DATABASE_URL, MOOD_DEFAULT, WEATHER_DEFAULT, LOCATION_DEFAULT
 from sqlalchemy import create_engine
 
 from fastapi import HTTPException
@@ -29,6 +29,9 @@ class Diary(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(200), nullable=False, comment='日记标题')
+    mood = Column(String(20), nullable=False, default=MOOD_DEFAULT, comment='心情选项 快乐、悲伤、愤怒、恐惧、厌恶、惊讶、平常')
+    weather = Column(String(20), nullable=False, default=WEATHER_DEFAULT, comment='天气选项 晴天、雨天、多云天、雾天、沙天、尘天、平常')
+    location = Column(String(125), nullable=False, default=LOCATION_DEFAULT, comment='地点')
     content = Column(Text, nullable=False, comment='日记内容')
     create_time = Column(DateTime, nullable=False, default=datetime.now, comment='创建时间')
     update_time = Column(DateTime, nullable=False, default=datetime.now, onupdate=datetime.now, comment='更新时间')
@@ -38,6 +41,9 @@ class Diary(Base):
         return {
             'id': self.id,
             'title': self.title,
+            'mood': self.mood,
+            'weather': self.weather,
+            'location': self.location,
             'content': self.content,
             'create_time': self.create_time.strftime('%Y-%m-%d %H:%M:%S'),
             'update_time': self.update_time.strftime('%Y-%m-%d %H:%M:%S')

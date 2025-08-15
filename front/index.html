@@ -18,11 +18,19 @@
         <main>
             <div class="diary-editor">
                 <input type="text" id="diary-title" placeholder="请输入标题">
+
+                <!-- 心情和天气选项容器 -->
+                <div class="selector-container">
+                    <div id="mood-selector"></div>
+                    <div id="weather-selector"></div>
+                </div>
+
                 <textarea id="diary-content" placeholder="请输入日记内容..."></textarea>
                 <button id="save-btn">保存日记</button>
             </div>
         </main>
     </div>
+    <script type="module" src="./js/moodWeather.js"></script>
     <script type="module" src="./js/script.js"></script>
 </body>
 </html>

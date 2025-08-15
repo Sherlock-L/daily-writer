@@ -1,12 +1,17 @@
-// 导入配置
+// 导入配置和心情天气模块
 import { apiBaseUrl } from './config.js';
-// 设置当前日期为标题默认值
-document.addEventListener('DOMContentLoaded', function() {
+import { initMoodSelector, initWeatherSelector, getSelectedMood, getSelectedWeather } from './moodWeather.js';
 
+// 设置当前日期为标题默认值
+ document.addEventListener('DOMContentLoaded', function() {
     // 设置当前日期
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
     document.getElementById('diary-title').value = formattedDate;
+
+    // 初始化心情和天气选择器
+    initMoodSelector('mood-selector');
+    initWeatherSelector('weather-selector');
 
     // 保存按钮事件
     document.getElementById('save-btn').addEventListener('click', saveDiary);
@@ -21,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
 async function saveDiary() {
     const title = document.getElementById('diary-title').value;
     const content = document.getElementById('diary-content').value;
+    const mood = getSelectedMood('mood-selector');
+    const weather = getSelectedWeather('weather-selector');
 
     if (!title || !content) {
         alert('标题和内容不能为空');
@@ -39,7 +46,9 @@ async function saveDiary() {
             },
             body: JSON.stringify({
                 title: title,
-                content: content
+                content: content,
+                mood: mood,
+                weather: weather
             })
         });
 
