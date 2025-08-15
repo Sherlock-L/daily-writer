@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from models import Diary, get_db_new_connection  # 修改这里，使用带重试的函数
 from pydantic import BaseModel
 from typing import List, Optional
-from config import PER_PAGE
+from config import PER_PAGE, MOOD_DEFAULT, WEATHER_DEFAULT, LOCATION_DEFAULT, MOOD_CHOICES, WEATHER_CHOICES
 
 # 创建路由
 router = APIRouter()
@@ -12,16 +12,39 @@ router = APIRouter()
 class DiaryCreate(BaseModel):
     title: str
     content: str
+    mood: Optional[str] = None
+    weather: Optional[str] = None
+    location: Optional[str] = None
 
 class DiaryUpdate(BaseModel):
     title: Optional[str] = None
     content: Optional[str] = None
+    mood: Optional[str] = None
+    weather: Optional[str] = None
+    location: Optional[str] = None
 
 # 保存日记
 @router.post('/diary', response_model=dict)
 def save_diary(diary: DiaryCreate, db: Session = Depends(get_db_new_connection)):  # 修改这里
     try:
-        new_diary = Diary(title=diary.title, content=diary.content)
+        # 处理默认值
+        mood = diary.mood if diary.mood is not None else MOOD_DEFAULT
+        weather = diary.weather if diary.weather is not None else WEATHER_DEFAULT
+        location = diary.location if diary.location is not None else LOCATION_DEFAULT
+
+        # 验证字段值
+        if mood not in MOOD_CHOICES:
+            raise HTTPException(status_code=400, detail=f'无效的心情值，可选值: {MOOD_CHOICES}')
+        if weather not in WEATHER_CHOICES:
+            raise HTTPException(status_code=400, detail=f'无效的天气值，可选值: {WEATHER_CHOICES}')
+
+        new_diary = Diary(
+            title=diary.title,
+            content=diary.content,
+            mood=mood,
+            weather=weather,
+            location=location
+        )
         db.add(new_diary)
         db.commit()
         db.refresh(new_diary)
@@ -30,6 +53,8 @@ def save_diary(diary: DiaryCreate, db: Session = Depends(get_db_new_connection))
             'message': '保存成功',
             'data': new_diary.to_dict()
         }
+    except HTTPException as e:
+        raise e
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=f'保存失败: {str(e)}')
@@ -106,6 +131,16 @@ def update_diary(diary_id: int, diary: DiaryUpdate, db: Session = Depends(get_db
             existing_diary.title = diary.title
         if diary.content is not None:
             existing_diary.content = diary.content
+        if diary.mood is not None:
+            if diary.mood not in MOOD_CHOICES:
+                raise HTTPException(status_code=400, detail=f'无效的心情值，可选值: {MOOD_CHOICES}')
+            existing_diary.mood = diary.mood
+        if diary.weather is not None:
+            if diary.weather not in WEATHER_CHOICES:
+                raise HTTPException(status_code=400, detail=f'无效的天气值，可选值: {WEATHER_CHOICES}')
+            existing_diary.weather = diary.weather
+        if diary.location is not None:
+            existing_diary.location = diary.location
 
         db.commit()
         db.refresh(existing_diary)

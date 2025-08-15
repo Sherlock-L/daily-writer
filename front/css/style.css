@@ -353,3 +353,55 @@ button:hover {
         height: 150px;
     }
 }
+
+/* 心情和天气选择器样式 */
+.selector-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f7f3e9;
+    border: 1px solid #d3c7a7;
+    border-radius: 4px;
+}
+
+.selector-title {
+    font-size: 20px;
+    color: #8B4513;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #d3c7a7;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.option-item:hover {
+    background-color: #f0e6d6;
+}
+
+.option-item.selected {
+    background-color: #f0e6d6;
+    border-color: #8B4513;
+}
+
+.option-checkbox {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.option-text {
+    font-size: 18px;
+    color: #333;
+}
