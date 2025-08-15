@@ -2,24 +2,24 @@
 
 // 定义心情选项
 const moodOptions = [
-    { id: 'happy', name: '快乐' },
-    { id: 'sad', name: '悲伤' },
-    { id: 'angry', name: '愤怒' },
-    { id: 'fear', name: '恐惧' },
-    { id: 'disgust', name: '厌恶' },
-    { id: 'surprise', name: '惊讶' },
-    { id: 'normal', name: '平常' }
+    { id: 'normal', name: '平常', icon: '😐' },
+    { id: 'happy', name: '快乐', icon: '😊' },
+    { id: 'sad', name: '悲伤', icon: '😢' },
+    { id: 'angry', name: '愤怒', icon: '😠' },
+    { id: 'fear', name: '恐惧', icon: '😨' },
+    { id: 'disgust', name: '厌恶', icon: '🤢' },
+    { id: 'surprise', name: '惊讶', icon: '😲' }
 ];
 
 // 定义天气选项
 const weatherOptions = [
-    { id: 'sunny', name: '晴天' },
-    { id: 'rainy', name: '雨天' },
-    { id: 'cloudy', name: '多云' },
-    { id: 'foggy', name: '雾天' },
-    { id: 'sand', name: '沙天' },
-    { id: 'dust', name: '尘天' },
-    { id: 'normal', name: '平常' }
+    { id: 'normal', name: '平常', icon: '🌤️' },
+    { id: 'sunny', name: '晴天', icon: '☀️' },
+    { id: 'rainy', name: '雨天', icon: '🌧️' },
+    { id: 'cloudy', name: '多云', icon: '☁️' },
+    { id: 'foggy', name: '雾天', icon: '🌫️' },
+    { id: 'sand', name: '沙天', icon: '🌪️' },
+    { id: 'dust', name: '尘天', icon: '💨' }
 ];
 
 // 初始化心情选择器
@@ -45,6 +45,7 @@ function initMoodSelector(containerId, defaultMood = 'normal') {
         optionElement.dataset.id = option.id;
         optionElement.innerHTML = `
             <span class="option-checkbox">□</span>
+            <span class="option-icon">${option.icon}</span>
             <span class="option-text">${option.name}</span>
         `;
         optionsContainer.appendChild(optionElement);
@@ -89,6 +90,7 @@ function initWeatherSelector(containerId, defaultWeather = 'normal') {
         optionElement.dataset.id = option.id;
         optionElement.innerHTML = `
             <span class="option-checkbox">□</span>
+            <span class="option-icon">${option.icon}</span>
             <span class="option-text">${option.name}</span>
         `;
         optionsContainer.appendChild(optionElement);

@@ -355,53 +355,86 @@ button:hover {
 }
 
 /* 心情和天气选择器样式 */
+/* 选择器容器样式 */
 .selector-container {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #f7f3e9;
-    border: 1px solid #d3c7a7;
-    border-radius: 4px;
+    display: flex;
+    gap: 30px;
+    margin: 15px 0;
 }
 
+/* 选择器标题样式 */
 .selector-title {
-    font-size: 20px;
+    font-family: 'Long Cang', cursive;
+    font-size: 22px;
     color: #8B4513;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
+/* 选项容器样式 */
 .options-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 12px;
 }
 
+/* 选项样式 */
 .option-item {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    padding: 5px 10px;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #f7f3e9;
     border: 1px solid #d3c7a7;
     border-radius: 4px;
-    background-color: #fff;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Long Cang', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 
+        0 1px 3px rgba(0,0,0,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
 .option-item:hover {
-    background-color: #f0e6d6;
+    background-color: #e8e0cc;
+    transform: translateY(-2px);
+    box-shadow: 
+        0 3px 6px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
+/* 选项选中样式 */
 .option-item.selected {
-    background-color: #f0e6d6;
+    background-color: #e8e0cc;
     border-color: #8B4513;
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.1),
+        inset 0 1px 3px rgba(139,69,19,0.2);
 }
 
+/* 复选框样式 */
 .option-checkbox {
     font-size: 18px;
-    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s;
 }
 
+/* 图标样式 */
+.option-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* 文本样式 */
 .option-text {
-    font-size: 18px;
-    color: #333;
+    line-height: 1.2;
 }

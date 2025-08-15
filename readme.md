@@ -1,6 +1,8 @@
 # 1. 项目介绍
 这是一个复古风的日记web项目，本地化部署，不上传云端
 
+![项目效果图](demo.png)
+
 [![Chinese](https://img.shields.io/badge/中文-README-green.svg)](README.md) [![English](https://img.shields.io/badge/English-README-blue.svg)](README_EN.md)
 
 # 2. 项目依赖
@@ -32,7 +34,7 @@ DB_NAME = 'diary_db'
 - win11: start.bat
 - linux:  
  1. 前端：cd   front && python -m http.server 10086  
- 2. 后端：cd   api && python main.py  
+ 2. 后端：cd   api && python main.py
 
 
 

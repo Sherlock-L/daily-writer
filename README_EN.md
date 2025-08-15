@@ -5,6 +5,8 @@
 ## 1. Project Introduction
 This is a retro-style diary web application that is deployed locally and does not upload data to the cloud.
 
+![Project Screenshot](demo.png)
+
 ## 2. Project Dependencies
 - Python (recommended: Python 11)
 
