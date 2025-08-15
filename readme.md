@@ -7,6 +7,7 @@
 
 # 2. 项目依赖
 - python ，推荐python 11
+- Mysql Server
 
 # 3. 项目安装
 1. 克隆项目 : git clone https://github.com/Sherlock-L/daily-writer.git
