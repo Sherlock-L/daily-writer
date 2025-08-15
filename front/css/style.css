@@ -237,13 +237,14 @@ button:hover {
     color: #7f8c8d;
     font-size: 18px;
     margin-bottom: 10px;
-    font-weight: bold;
+    font-weight: bolder;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
 }
 
 .diary-date span {
+     font-weight: bold;
     margin: 0 5px;
 }
 
@@ -449,6 +450,7 @@ button:hover {
 /* 添加到现有样式中 */
 .diary-mood-weather {
     font-size: 18px;
+    font-weight: bold;
     margin: 10px 0;
     color: #555;
 }

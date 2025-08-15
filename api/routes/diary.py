@@ -65,6 +65,8 @@ def get_diaries(
     page: int = Query(1, ge=1),
     per_page: int = Query(PER_PAGE, ge=1, le=100),
     search: str = Query('', min_length=0),
+    start_date: str = Query('', min_length=0),
+    end_date: str = Query('', min_length=0),
     db: Session = Depends(get_db_new_connection)  # 修改这里
 ):
     try:
@@ -80,6 +82,12 @@ def get_diaries(
                 (Diary.title.like(f'%{search}%')) | 
                 (Diary.content.like(f'%{search}%'))
             )
+
+        # 日期范围过滤
+        if start_date:
+            query = query.filter(Diary.create_time >= start_date)
+        if end_date:
+            query = query.filter(Diary.create_time <= end_date + ' 23:59:59')
 
         # 获取总数
         total = query.count()

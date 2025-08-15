@@ -11,19 +11,24 @@ const pageSize = 10;
 // DOM加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
 
-    // 返回主页按钮事件
-    document.getElementById('back-to-home').addEventListener('click', function() {
+    // 新建日记按钮事件
+document.getElementById('new-diary').addEventListener('click', function() {
         window.location.href = 'index.html';
     });
 
+    // 日记看板按钮事件
+document.getElementById('dashboard').addEventListener('click', function() {
+        window.location.href = 'dashboard.html';
+    });
+
     // 搜索按钮事件
-    document.getElementById('search-btn').addEventListener('click', function() {
+document.getElementById('search-btn').addEventListener('click', function() {
         currentPage = 1; // 重置为第一页
         loadDiaryList();
     });
 
     // 搜索框回车事件
-    document.getElementById('search-input').addEventListener('keypress', function(e) {
+document.getElementById('search-input').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             currentPage = 1; // 重置为第一页
             loadDiaryList();
@@ -31,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 加载日记列表
-    loadDiaryList();
+loadDiaryList();
 });
 
 // 加载日记列表
@@ -42,13 +47,13 @@ async function loadDiaryList() {
     const loadingElement = document.getElementById('loading');
 
     // 显示加载状态
-    loadingElement.style.display = 'block';
+loadingElement.style.display = 'block';
     diaryListElement.innerHTML = '';
     paginationElement.innerHTML = '';
 
     try {
         // 构建查询参数
-        let queryParams = `page=${currentPage}&page_size=${pageSize}`;
+let queryParams = `page=${currentPage}&page_size=${pageSize}`;
         if (searchKeyword) {
             queryParams += `&search=${encodeURIComponent(searchKeyword)}`;
         }
@@ -60,13 +65,13 @@ async function loadDiaryList() {
         }
 
         const resp = await response.json();
-        const data =resp.data
+        const data = resp.data;
         const diaries = data.items;
         const total = data.total;
         const totalPages = Math.ceil(total / pageSize);
 
         // 渲染日记列表
-        if (diaries.length === 0) {
+if (diaries.length === 0) {
             diaryListElement.innerHTML = '<p class="no-data">没有找到日记</p>';
         } else {
             diaries.forEach(diary => {
@@ -74,7 +79,7 @@ async function loadDiaryList() {
                 diaryItem.className = 'diary-item';
                 
                 // 获取心情和天气对应的图标
-                const moodIcon = moodOptions.find(m => m.name === diary.mood)?.icon || '😐';
+const moodIcon = moodOptions.find(m => m.name === diary.mood)?.icon || '😐';
                 const weatherIcon = weatherOptions.find(w => w.name === diary.weather)?.icon || '🌤️';
                 
                 diaryItem.innerHTML = `
@@ -89,22 +94,22 @@ async function loadDiaryList() {
             });
 
             // 绑定查看详情按钮事件
-            document.querySelectorAll('.view-btn').forEach(btn => {
+document.querySelectorAll('.view-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
-                    window.location.href = `detail.html?id=${id}`;
+                    window.open(`detail.html?id=${id}`, '_blank');
                 });
             });
         }
 
         // 渲染分页
-        renderPagination(totalPages);
+renderPagination(totalPages);
     } catch (error) {
         console.error('加载日记列表出错:', error);
         diaryListElement.innerHTML = `<p class="error-message">加载失败: ${error.message}</p>`;
     } finally {
         // 隐藏加载状态
-        loadingElement.style.display = 'none';
+loadingElement.style.display = 'none';
     }
 }
 
@@ -113,7 +118,7 @@ function renderPagination(totalPages) {
     const paginationElement = document.getElementById('pagination');
 
     // 上一页
-    if (currentPage > 1) {
+if (currentPage > 1) {
         const prevBtn = document.createElement('button');
         prevBtn.textContent = '上一页';
         prevBtn.addEventListener('click', function() {
@@ -124,7 +129,7 @@ function renderPagination(totalPages) {
     }
 
     // 页码
-    for (let i = 1; i <= totalPages; i++) {
+for (let i = 1; i <= totalPages; i++) {
         const pageBtn = document.createElement('button');
         pageBtn.textContent = i;
         pageBtn.className = i === currentPage ? 'active' : '';
@@ -136,7 +141,7 @@ function renderPagination(totalPages) {
     }
 
     // 下一页
-    if (currentPage < totalPages) {
+if (currentPage < totalPages) {
         const nextBtn = document.createElement('button');
         nextBtn.textContent = '下一页';
         nextBtn.addEventListener('click', function() {
