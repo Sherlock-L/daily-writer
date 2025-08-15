@@ -9,5 +9,4 @@ api/__pycache__/
 route/__pycache__/
 __pycache__
 absolute/
-api/__pycache__/
-route/__pycache__/
+api/routes/__pycache__/
