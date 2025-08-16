@@ -2,7 +2,9 @@
 这是一个复古风的日记web项目，本地化部署，不上传云端
 
 ![项目效果图](demo.png)
-
+![项目效果图](overview.png)
+![项目效果图](list.png)
+![项目效果图](detail.png)
 [![Chinese](https://img.shields.io/badge/中文-README-green.svg)](README.md) [![English](https://img.shields.io/badge/English-README-blue.svg)](README_EN.md)
 
 # 2. 项目依赖
