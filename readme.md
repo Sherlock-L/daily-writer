@@ -36,7 +36,7 @@ DB_NAME = 'diary_db'
 5. 运行项目
 - win11: start.bat
 - linux:  
- 1. 前端：cd   front && python -m http.server 10086  
+ 1. 前端：cd   front && python -m http.server 50000  
  2. 后端：cd   api && python main.py
 
 
