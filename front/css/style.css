@@ -389,8 +389,8 @@ button:hover {
 /* 选项样式 */
 .option-item {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: baseline; /* 修改为基线对齐 */
+    gap: 5px; /* 稍微减小间距 */
     padding: 8px 12px;
     background-color: #f7f3e9;
     border: 1px solid #d3c7a7;
@@ -435,9 +435,9 @@ button:hover {
 
 /* 图标样式 */
 .option-icon {
-    font-size: 24px;
-    width: 24px;
-    height: 24px;
+    font-size: 20px; /* 稍微减小图标大小 */
+    width: 20px;
+    height: 20px;
     display: inline-block;
     text-align: center;
 }
