@@ -30,6 +30,23 @@ let currentMonth = new Date().getMonth();
 // 存储日记数据
 let diaryData = {};
 
+// 添加东八区日期处理函数
+function getBeijingDateString(year, month, day) {
+    // 创建日期对象 (月份是0-11)
+    const date = new Date(year, month, day);
+    // 获取UTC时间戳
+    const utcTime = date.getTime();
+    // 东八区比UTC早8小时
+    const beijingTime = utcTime + 8 * 60 * 60 * 1000;
+    // 创建东八区日期对象
+    const beijingDate = new Date(beijingTime);
+    // 返回YYYY-MM-DD格式字符串
+    const y = beijingDate.getUTCFullYear();
+    const m = String(beijingDate.getUTCMonth() + 1).padStart(2, '0');
+    const d = String(beijingDate.getUTCDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
 // DOM 元素
 const calendarBody = document.getElementById('calendar-body');
 const currentMonthElement = document.getElementById('current-month');
@@ -79,9 +96,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 // 修改loadDiaryData函数，添加更多调试信息
 async function loadDiaryData() {
     try {
-        // 构造请求月份的开始和结束日期
-        const startDate = new Date(currentYear, currentMonth, 1).toISOString().split('T')[0];
-        const endDate = new Date(currentYear, currentMonth + 1, 0).toISOString().split('T')[0];
+        // 构造请求月份的开始和结束日期 (使用东八区)
+        const startDate = getBeijingDateString(currentYear, currentMonth, 1);
+        const endDate = getBeijingDateString(currentYear, currentMonth + 1, 0);
 
         console.log(`请求日记数据: ${startDate} 至 ${endDate}`);
 
@@ -225,9 +242,8 @@ function renderCalendar() {
         const dayCell = document.createElement('td');
         dayCell.className = 'calendar-day';
     
-        // 构建日期字符串 - 修改为与API返回格式完全一致
-        const date = new Date(currentYear, currentMonth, i);
-        const dateStr = date.toISOString().split('T')[0];
+        // 构建日期字符串 - 基于东八区
+        const dateStr = getBeijingDateString(currentYear, currentMonth, i);
     
         // 检查是否有日记
         if (diaryData[dateStr]) {
