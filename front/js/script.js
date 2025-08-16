@@ -1,6 +1,8 @@
 // 导入配置和心情天气模块
 import { apiBaseUrl } from './config.js';
 import { initMoodSelector, initWeatherSelector, getSelectedMood, getSelectedWeather } from './moodWeather.js';
+// 导入自定义弹窗
+import customModal from './modal.js';
 
 // 设置当前日期为标题默认值
  document.addEventListener('DOMContentLoaded', function() {
@@ -30,7 +32,12 @@ async function saveDiary() {
     const weather = getSelectedWeather('weather-selector');
 
     if (!title || !content) {
-        alert('标题和内容不能为空');
+        // 使用自定义弹窗替代alert
+        customModal.show({
+            title: '提示',
+            content: '标题和内容不能为空',
+            confirmText: '确定'
+        });
         return;
     }
 
@@ -53,18 +60,30 @@ async function saveDiary() {
         });
 
         if (!response.ok) {
-            throw new Error('保存失败: ' + response.statusText);
+            throw new Error('存封失败: ' + response.statusText);
         }
 
         const data = await response.json();
-        alert('保存成功！');
-        window.location.href = `index.html`;
+        // 显示保存成功弹窗
+        customModal.show({
+            title: '存封成功',
+            content: '日记已成功存封！',
+            confirmText: '确定',
+            onConfirm: function() {
+                window.location.href = `index.html`;
+            }
+        });
     } catch (error) {
         console.error('保存日记出错:', error);
-        alert('保存失败: ' + error.message);
+        // 显示保存失败弹窗
+        customModal.show({
+            title: '存封失败',
+            content: '存封失败: ' + error.message,
+            confirmText: '确定'
+        });
     } finally {
         // 恢复按钮状态
         document.getElementById('save-btn').disabled = false;
-        document.getElementById('save-btn').textContent = '保存日记';
+        document.getElementById('save-btn').textContent = '存封此页';
     }
 }

@@ -7,14 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- 引入自定义弹窗样式 -->
+    <link rel="stylesheet" href="./css/modal.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <button id="back-to-list">岁月索引</button>
-            <h1>墨写时光</h1>
             <button id="dashboard">时光印记</button>
+            <h1>墨写时光</h1>
+             <button id="back-to-list">岁月索引</button>
         </header>
         <main>
             <div class="diary-editor">
@@ -32,6 +34,8 @@
         </main>
     </div>
     <script type="module" src="./js/moodWeather.js"></script>
+    <!-- 引入自定义弹窗脚本 -->
+    <script type="module" src="./js/modal.js"></script>
     <script type="module" src="./js/script.js"></script>
     <script>
     // 看板按钮事件
