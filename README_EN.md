@@ -1,5 +1,8 @@
-# Daily Writer - A Retro Diary Web Application
+# Vintage Diary – Return to the Essence of Writing​
+✍️ The Vision​​
+In this era of information overload, we're surrounded by "efficient," "smart," and "feature-rich" note-taking apps—yet we’ve slowly forgotten the raw emotion of keeping a diary.
 
+​​Vintage Diary​​ was born from a simple desire: ​​to reclaim the purity of pen-and-paper journaling​​. No bloated features, no flashy interfaces—just you and your words, like the quiet, focused freedom of writing on aged paper.
 [![Chinese](https://img.shields.io/badge/中文-README-green.svg)](README.md) [![English](https://img.shields.io/badge/English-README-blue.svg)](README_EN.md)
 
 ## 1. Project Introduction
