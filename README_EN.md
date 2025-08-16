@@ -34,5 +34,5 @@ Import and execute from init.sql.
 5. Run the Project
    - Windows 11: start.bat
    - Linux:
-     1. Frontend: cd front && python -m http.server 10086
+     1. Frontend: cd front && python -m http.server 50000
      2. Backend: cd api && python main.py
