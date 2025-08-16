@@ -37,8 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
             title: '焚稿为星',
             content: '确定要将这篇日记焚稿为星吗？',
             confirmText: '确认焚稿',
+            cancelText: '取消', // 添加取消按钮文本
             onConfirm: function() {
                 deleteDiary(diaryId);
+            },
+            onCancel: function() {
+                customModal.hide(); // 关闭弹窗
             }
         });
     });

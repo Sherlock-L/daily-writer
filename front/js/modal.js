@@ -44,8 +44,20 @@ class CustomModal {
             }
         });
 
+        // 创建取消按钮
+        const cancelButton = document.createElement('button');
+        cancelButton.className = 'modal-button cancel';
+        cancelButton.textContent = '取消';
+        cancelButton.addEventListener('click', () => {
+            this.hide();
+            if (this.cancelCallback) {
+                this.cancelCallback();
+            }
+        });
+
         // 添加到按钮容器
         buttonsContainer.appendChild(confirmButton);
+        buttonsContainer.appendChild(cancelButton);
 
         // 组装弹窗
         container.appendChild(title);
@@ -62,7 +74,9 @@ class CustomModal {
         this.titleElement = title;
         this.contentElement = content;
         this.confirmButton = confirmButton;
+        this.cancelButton = cancelButton;
         this.confirmCallback = null;
+        this.cancelCallback = null;
     }
 
     // 显示弹窗
@@ -88,6 +102,16 @@ class CustomModal {
             this.confirmButton.textContent = options.confirmText;
         } else {
             this.confirmButton.textContent = '确定';
+        }
+
+        // 处理取消按钮
+        if (options.cancelText) {
+            this.cancelButton.textContent = options.cancelText;
+            this.cancelButton.style.display = 'inline-block';
+            this.cancelCallback = options.onCancel || null;
+        } else {
+            this.cancelButton.style.display = 'none';
+            this.cancelCallback = null;
         }
 
         this.confirmCallback = options.onConfirm || null;
